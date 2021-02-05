@@ -1,20 +1,36 @@
 package ClinicSystem;
 
+/*Classes import*/
+
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.DateFormatter;
 import javax.swing.text.JTextComponent;
 import java.awt.event.*;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
+/*Main Class bind with page Registration form*/
+
 public class PatientRegistration {
+
+    //Basic variable declaration not used everywhere...
+
     private String patientName, Father_name, husband_name, PatientAddress, patientPhoneNumber;
     private boolean New = false, followUp = false;
     private int age;
     int serialNum = 0;
+
+    /******************************************
+                components declaration
+     *****************************************/
 
     private JPanel mainPane;
     private JTextField MrField;
@@ -34,38 +50,69 @@ public class PatientRegistration {
     private JButton SUMMARYButton1;
     private JTextArea ageField;
     private JComboBox comboBox1;
-    private JLabel errorLabel;
-    int index = -1;
-    String fileName = "Patients.csv";
-    int entries = 1;
+    private JTextField dateHere;
+    private JButton PAYMENTSUMMARYButton;
+    private JPanel backGround;
+
+    /*****************************
+        File and indexing variables
+      *****************************/
+
+        int index = -1;
+        String fileName = "Patients.csv";
+        static int entries = 0;
+
+    /***************Constructor******************/
 
     public PatientRegistration(JFrame frame) {
 
-        File file = new File(fileName);
+        File file = new File(fileName); // File creates
         try {
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
         sessionEntries.setText("0");
-        ButtonGroup group = new ButtonGroup();
-        group.add(misRadioButton);
-        group.add(MRRadioButton);
-        group.add(MRSRadioButton);
-        String data = mrGenerator(fileName);
-        String[] dataSplitforMr = data.split(",");
-        MrField.setText(dataSplitforMr[1]);
+        /*******************************
+         *        Grouping buttons     *
+         *******************************/
+
+        ButtonGroup newGroup = new ButtonGroup();
+        newGroup.add(NEWCheckBox);
+        newGroup.add(FOLLOWUPCheckBox);
+
+        /*
+        mrGenerator generates formatted MR# HC-00-000
+        returns serial Number and Mr Number from last line of file
+         */
+
+        String[] data = mrGenerator(fileName);
+        //data = sr,Mr#,date
+        MrField.setText(data[1]);              //MRField = Mr#
         sessionEntries.setEditable(false);
         nameBox.setEditable(false);
+        LastEntryField.setText(data[2]);
+        sessionEntries.setText(entries + "");
+
+        /*
+        adding items to combo box
+         */
         comboBox1.addItem("Mis");
         comboBox1.addItem("Mr");
         comboBox1.addItem("Mrs");
 
+        //setting combo box selection to null
+        comboBox1.setSelectedIndex(-1);
+        //By default nothing is selected.
         MrField.setEditable(false);
         LastEntryField.setEditable(false);
-        ButtonGroup newGroup = new ButtonGroup();
-        newGroup.add(NEWCheckBox);
-        newGroup.add(FOLLOWUPCheckBox);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time = dtf.format(now);
+        time = time.substring(0, 10);
+        dateHere.setText(time);
+        dateHere.setEditable(false);
+        ++entries;
         SAVEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,31 +121,34 @@ public class PatientRegistration {
                 String time = dtf.format(now);
 
 
-                sessionEntries.setText(entries + "");
                 try {
                     FileWriter writer = new FileWriter(fileName, true);
                     if (nameBox.getText().equals("") || ageField.getText().equals("") || spouseNameBox.getText().equals("")
                             || phoneNumBox.getText().equals("") || AddressBox.getText().equals("")) {
                         JOptionPane.showMessageDialog(null, "Insufficient information is provided",
                                 "Error!", JOptionPane.ERROR_MESSAGE);
-                    } else {
 
-                        String data = mrGenerator(fileName);
-                        String[] dataSplitforMr = data.split(",");
-                        MrField.setText(dataSplitforMr[1]);
-                        data += "," + nameBox.getText() + "," + spouseNameBox.getText() + "," + ageField.getText();
-                        data += "," + AddressBox.getText() + "," + phoneNumBox.getText() + "," + time;
+                    } else {
+                        String newData = "";
+                        String[] requiredData = mrGenerator(fileName);
+                        MrField.setText(requiredData[1]);
+                        newData = requiredData[0];
+                        newData += "," + requiredData[1];
+                        newData += "," + nameBox.getText() + "," + spouseNameBox.getText() + "," + ageField.getText();
+                        newData += "," + AddressBox.getText() + "," + phoneNumBox.getText() + "," + time;
                         if (NEWCheckBox.isSelected()) {
-                            data += "," + "New" + '\n';
+                            newData += "," + "New(initial)" + '\n';
                             New = true;
                         } else if (FOLLOWUPCheckBox.isSelected()) {
-                            data += "," + "F/up" + '\n';
+                            newData += "," + "F/up" + '\n';
                             followUp = true;
                         }
-                        writer.write(data);
+                        writer.write(newData);
                         writer.close();
                         JOptionPane.showMessageDialog(null, "Patient is successfully Registered",
                                 "Registration", JOptionPane.PLAIN_MESSAGE);
+
+                        entries++;
                         ageField.setText("");
                         nameBox.setText("");
                         AddressBox.setText("");
@@ -108,11 +158,11 @@ public class PatientRegistration {
                         NEWCheckBox.setSelected(false);
                         FOLLOWUPCheckBox.setSelected(false);
                         nameBox.setEditable(false);
-                        ++entries;
-
+                        comboBox1.setSelectedIndex(-1);
                         LastEntryField.setText(time);
 
 
+                        new Consultation(frame, requiredData[1]);
                     }
 
                 } catch (IOException ioException) {
@@ -140,7 +190,7 @@ public class PatientRegistration {
                 index = -1;
                 char ch = e.getKeyChar();
                 index = comboBox1.getSelectedIndex();
-                if(index != -1) {
+                if (index != -1) {
 
 
                     if (Character.isLetter(ch) || ch == ' ' || ch == '\b' || ch == '-') {
@@ -179,8 +229,12 @@ public class PatientRegistration {
         SUMMARYButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                     frame.setVisible(false);
-                     new Summary();
+                frame.setVisible(false);
+                if (entries != 0)
+                    --entries;
+                else
+                    entries = 0;
+                new Summary();
             }
         });
         comboBox1.addActionListener(new ActionListener() {
@@ -190,12 +244,16 @@ public class PatientRegistration {
 
 
                     nameBox.setText("Mis.");
+
+
                 } else if (comboBox1.getSelectedIndex() == 1) {
+
                     nameBox.setText("Mr.");
+
                 } else if (comboBox1.getSelectedIndex() == 2) {
                     nameBox.setText("Mrs.");
-                }
-                else{
+
+                } else {
                     nameBox.setEditable(false);
                 }
                 index = comboBox1.getSelectedIndex();
@@ -206,13 +264,15 @@ public class PatientRegistration {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int opt = JOptionPane.showConfirmDialog(null, "Do you really want to exit?");
-                if(opt == JOptionPane.YES_OPTION)
+                if (opt == JOptionPane.YES_OPTION)
                     System.exit(0);
             }
         });
+        backGround.addFocusListener(new FocusAdapter() {
+        });
     }
 
-    public String mrGenerator(String filepath) {
+    public String[] mrGenerator(String filepath) {
         int sr_number = 0;
         int midValue = 0, lastValue = 0; // hc-00(midValue)-000(lastValue)
         String data = "";
@@ -227,10 +287,12 @@ public class PatientRegistration {
         Scanner inputFromFile = new Scanner(reader);
         int lines = 0;
         int indexLoop = 0;
+        String lastEntry = "";
         while (true) {
             if (inputFromFile.hasNextLine()) {
                 String Data = inputFromFile.nextLine();
                 String[] wholeLineSplit = Data.split(",");
+                lastEntry = wholeLineSplit[7];
                 if (wholeLineSplit.length == 9) {
                     String[] MrSplit = wholeLineSplit[1].split("-");
                     midValue = Integer.parseInt(MrSplit[1]);
@@ -263,7 +325,7 @@ public class PatientRegistration {
                     formatString = "HC-0" + midValue + "-" + lastValue;
                 else
                     formatString = "HC-" + midValue + "-" + lastValue;
-            else if (lastValue < 99)
+            else if (lastValue <= 99)
                 if (midValue < 1)
                     formatString = "HC-00-0" + lastValue;
                 else if (midValue > 0 && midValue < 10)
@@ -281,10 +343,10 @@ public class PatientRegistration {
 
         }
         ++sr_number;
-        data = sr_number + "," + formatString;
+        String[] Data = {String.valueOf(sr_number),formatString ,lastEntry};
 
 
-        return data;
+        return Data;
     }
 
     public static void main(String[] args) {
@@ -314,9 +376,12 @@ public class PatientRegistration {
                         // Not worth my time
                     }
                 }
+
                 JFrame frame = new JFrame("Patient Registration");
                 frame.setSize(1024, 768);
+                frame.setLayout(null);
                 frame.setContentPane(new PatientRegistration(frame).mainPane);
+                frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
 

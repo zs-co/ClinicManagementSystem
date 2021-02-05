@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ClinicSystem.Consultation">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="1406" height="443"/>
+    </constraints>
+    <properties>
+      <background color="-663885"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="b8f0d" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-16777216"/>
+          <text value="Total Bill:"/>
+        </properties>
+      </component>
+      <component id="87cc6" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints/>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <component id="da423" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-16777216"/>
+          <text value="Patient Payment: "/>
+        </properties>
+      </component>
+      <component id="3956a" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints/>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <component id="b389e" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-16777216"/>
+          <text value="Balance: "/>
+        </properties>
+      </component>
+      <component id="22508" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+        <constraints/>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <grid id="30337" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-2702950"/>
+          <font size="20"/>
+          <foreground color="-16777216"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d90b7" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <font size="20"/>
+              <foreground color="-16777216"/>
+              <text value="Payment"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="23c13" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-16777216"/>
+          <text value="Pulmonary Function Test Fee: "/>
+        </properties>
+      </component>
+      <component id="3207e" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+        <constraints/>
+        <properties/>
+      </component>
+      <component id="34015" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-16777216"/>
+          <text value="Consulation Fee Dr.Shazli Manzoor:"/>
+        </properties>
+      </component>
+      <component id="5e50c" class="javax.swing.JTextField" binding="textField5">
+        <constraints/>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <grid id="50e2a" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-663885"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="bf2ba" class="javax.swing.JButton" binding="printButton">
+            <constraints/>
+            <properties>
+              <font size="14"/>
+              <foreground color="-16777216"/>
+              <text value="Print"/>
+            </properties>
+          </component>
+          <hspacer id="d42b3">
+            <constraints/>
+          </hspacer>
+          <vspacer id="e0bf2">
+            <constraints/>
+          </vspacer>
+          <component id="9c50c" class="javax.swing.JButton" binding="totalButton1" default-binding="true">
+            <constraints/>
+            <properties>
+              <font size="14"/>
+              <foreground color="-16777216"/>
+              <text value="Total"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="7f1f5" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
