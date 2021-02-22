@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Heart&amp;ChestClinicIslamabad:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Heart_ChestClinicIslamabad_jar</output-path>
-    <root id="archive" name="Heart&amp;ChestClinicIslamabad.jar">
-      <element id="module-output" name="Heart&amp;ChestClinicIslamabad" />
-    </root>
-  </artifact>
-</component>

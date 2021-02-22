@@ -10,6 +10,7 @@ import javax.swing.text.DateFormatter;
 import javax.swing.text.JTextComponent;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -48,7 +49,7 @@ public class PatientRegistration {
     private JButton SAVEButton;
     private JButton CANCELButton;
     private JButton SUMMARYButton1;
-    private JTextArea ageField;
+    private JTextField ageField;
     private JComboBox comboBox1;
     private JTextField dateHere;
     private JButton PAYMENTSUMMARYButton;
@@ -60,7 +61,7 @@ public class PatientRegistration {
 
         int index = -1;
         String fileName = "Patients.csv";
-        static int entries = 0;
+        int entries = 0;
 
     /***************Constructor******************/
 
@@ -113,62 +114,65 @@ public class PatientRegistration {
         dateHere.setText(time);
         dateHere.setEditable(false);
         ++entries;
+        SAVEButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char ch = e.getKeyChar();
+                if(ch == '\n'){
+                    SaveButton(frame);
+                }
+            }
+        });
+        SUMMARYButton1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char ch = e.getKeyChar();
+                if(ch == '\n'){
+                    frame.setVisible(false);
+                    new Summary();
+                }
+            }
+        });
+        PAYMENTSUMMARYButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char ch = e.getKeyChar();
+                if(ch == '\n'){
+                    frame.setVisible(false);
+                    new CashSummary();
+                }
+            }
+        });
+        PAYMENTSUMMARYButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                new CashSummary();
+            }
+        });
+        CANCELButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char ch = e.getKeyChar();
+                if(ch == '\n'){
+                    int opt = JOptionPane.showConfirmDialog(null, "Do you really want to exit?");
+                    if (opt == JOptionPane.YES_OPTION)
+                        System.exit(0);
+                }
+            }
+        });
         SAVEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                LocalDateTime now = LocalDateTime.now();
-                String time = dtf.format(now);
+                ++entries;
+                sessionEntries.setText(entries+"");
+                SaveButton(frame);
 
-
-                try {
-                    FileWriter writer = new FileWriter(fileName, true);
-                    if (nameBox.getText().equals("") || ageField.getText().equals("") || spouseNameBox.getText().equals("")
-                            || phoneNumBox.getText().equals("") || AddressBox.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Insufficient information is provided",
-                                "Error!", JOptionPane.ERROR_MESSAGE);
-
-                    } else {
-                        String newData = "";
-                        String[] requiredData = mrGenerator(fileName);
-                        MrField.setText(requiredData[1]);
-                        newData = requiredData[0];
-                        newData += "," + requiredData[1];
-                        newData += "," + nameBox.getText() + "," + spouseNameBox.getText() + "," + ageField.getText();
-                        newData += "," + AddressBox.getText() + "," + phoneNumBox.getText() + "," + time;
-                        if (NEWCheckBox.isSelected()) {
-                            newData += "," + "New(initial)" + '\n';
-                            New = true;
-                        } else if (FOLLOWUPCheckBox.isSelected()) {
-                            newData += "," + "F/up" + '\n';
-                            followUp = true;
-                        }
-                        writer.write(newData);
-                        writer.close();
-                        JOptionPane.showMessageDialog(null, "Patient is successfully Registered",
-                                "Registration", JOptionPane.PLAIN_MESSAGE);
-
-                        entries++;
-                        ageField.setText("");
-                        nameBox.setText("");
-                        AddressBox.setText("");
-                        ageField.setText("");
-                        spouseNameBox.setText("");
-                        phoneNumBox.setText("");
-                        NEWCheckBox.setSelected(false);
-                        FOLLOWUPCheckBox.setSelected(false);
-                        nameBox.setEditable(false);
-                        comboBox1.setSelectedIndex(-1);
-                        LastEntryField.setText(time);
-
-
-                        new Consultation(frame, requiredData[1]);
-                    }
-
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
+                            }
         });
 
 
@@ -192,8 +196,11 @@ public class PatientRegistration {
                 index = comboBox1.getSelectedIndex();
                 if (index != -1) {
 
-
+                        int Index = 0;
                     if (Character.isLetter(ch) || ch == ' ' || ch == '\b' || ch == '-') {
+                        if(index == 0 )
+                            Character.toUpperCase(ch);
+                        ++Index;
                         nameBox.setEditable(true);
                     } else {
                         nameBox.setEditable(false); //Box means textfieldbox****
@@ -205,8 +212,13 @@ public class PatientRegistration {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
+                int Index = 0;
+
                 char ch = e.getKeyChar();
                 if (Character.isLetter(ch) || ch == ' ' || '\b' == ch || ch == '-') {
+                    if(index == 0 )
+                        Character.toUpperCase(ch);
+                    ++Index;
                     spouseNameBox.setEditable(true);
                 } else {
                     spouseNameBox.setEditable(false); //Box means textfieldbox****
@@ -270,6 +282,14 @@ public class PatientRegistration {
         });
         backGround.addFocusListener(new FocusAdapter() {
         });
+        SAVEButton.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                e.getSource();
+
+            }
+        });
     }
 
     public String[] mrGenerator(String filepath) {
@@ -322,16 +342,16 @@ public class PatientRegistration {
                 if (midValue < 1)
                     formatString = "HC-00-00" + lastValue;
                 else if (midValue > 0 && midValue < 10)
-                    formatString = "HC-0" + midValue + "-" + lastValue;
+                    formatString = "HC-0" + midValue + "-00" + lastValue;
                 else
-                    formatString = "HC-" + midValue + "-" + lastValue;
+                    formatString = "HC-" + midValue + "-00" + lastValue;
             else if (lastValue <= 99)
                 if (midValue < 1)
                     formatString = "HC-00-0" + lastValue;
                 else if (midValue > 0 && midValue < 10)
-                    formatString = "HC-0" + midValue + "-" + lastValue;
+                    formatString = "HC-0" + midValue + "-0" + lastValue;
                 else
-                    formatString = "HC-" + midValue + "-" + lastValue;
+                    formatString = "HC-" + midValue + "-0" + lastValue;
 
 
             else if (midValue < 1)
@@ -349,7 +369,66 @@ public class PatientRegistration {
         return Data;
     }
 
-    public static void main(String[] args) {
+    public void SaveButton(JFrame frame){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time = dtf.format(now);
+
+
+        try {
+            FileWriter writer = new FileWriter(fileName, true);
+            if (nameBox.getText().equals("") || ageField.getText().equals("") || spouseNameBox.getText().equals("")
+                    || phoneNumBox.getText().equals("") || AddressBox.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Insufficient information is provided",
+                        "Error!", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                String newData = "";
+                String[] requiredData = mrGenerator(fileName);
+                MrField.setText(requiredData[1]);
+                newData = requiredData[0];
+                newData += "," + requiredData[1];
+                newData += "," + nameBox.getText() + "," + spouseNameBox.getText() + "," + ageField.getText();
+                newData += "," + AddressBox.getText() + "," + phoneNumBox.getText() + "," + time;
+                String stat = "";
+                if (NEWCheckBox.isSelected()) {
+                    newData += "," + "New(initial)" + '\n';
+                    stat = "New(initial)";
+                    New = true;
+                } else if (FOLLOWUPCheckBox.isSelected()) {
+                    newData += "," + "F/up" + '\n';
+                    stat = "Follow Up";
+                    followUp = true;
+                }
+                writer.write(newData);
+                writer.close();
+                JOptionPane.showMessageDialog(null, "Patient is successfully Registered",
+                        "Registration", JOptionPane.PLAIN_MESSAGE);
+                new Consultation(frame, requiredData[1], nameBox.getText(), ageField.getText(), phoneNumBox.getText(), stat);
+
+
+                ageField.setText("");
+                nameBox.setText("");
+                AddressBox.setText("");
+                ageField.setText("");
+                spouseNameBox.setText("");
+                phoneNumBox.setText("");
+                NEWCheckBox.setSelected(false);
+                FOLLOWUPCheckBox.setSelected(false);
+                nameBox.setEditable(false);
+                comboBox1.setSelectedIndex(-1);
+                LastEntryField.setText(time);
+
+
+            }
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+    }
+
+    public static void Main(String[] args) {
         /*
         try {
             FileWriter file = new FileWriter("Patients.csv");
@@ -358,28 +437,27 @@ public class PatientRegistration {
             e.printStackTrace();
         }
         */
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 try {
-                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                        if ("Nimbus".equals(info.getName())) {
-                            UIManager.setLookAndFeel(info.getClassName());
-                            break;
-                        }
-                    }
-                } catch (Exception e) {
-                    // If Nimbus is not available, fall back to cross-platform
-                    try {
-                        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                    } catch (Exception ex) {
-                        // Not worth my time
-                    }
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedLookAndFeelException e) {
+                    e.printStackTrace();
                 }
 
                 JFrame frame = new JFrame("Patient Registration");
-                frame.setSize(1024, 768);
-                frame.setLayout(null);
+
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                frame.setSize(800, 600);
+                frame.setLocationRelativeTo(null);
                 frame.setContentPane(new PatientRegistration(frame).mainPane);
                 frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -388,6 +466,10 @@ public class PatientRegistration {
             }
         });
 
+    }
+
+    public static void main(String[] args) {
+        new LoginForm();
     }
 }
 

@@ -52,7 +52,7 @@
             <constraints/>
             <properties>
               <background color="-16777216"/>
-              <foreground color="-29696"/>
+              <foreground color="-16777216"/>
               <text value="Daily Summary"/>
             </properties>
           </component>
@@ -60,7 +60,7 @@
             <constraints/>
             <properties>
               <background color="-16777216"/>
-              <foreground color="-29696"/>
+              <foreground color="-16777216"/>
               <text value="Monthly Summary"/>
             </properties>
           </component>
@@ -68,7 +68,7 @@
             <constraints/>
             <properties>
               <background color="-16777216"/>
-              <foreground color="-29696"/>
+              <foreground color="-16777216"/>
               <text value="Back"/>
             </properties>
           </component>
@@ -80,7 +80,7 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
-          <foreground color="-29696"/>
+          <foreground color="-16777216"/>
           <text value="Search"/>
         </properties>
       </component>

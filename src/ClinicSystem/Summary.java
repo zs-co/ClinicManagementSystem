@@ -40,6 +40,7 @@ public class Summary {
         header.setFont(font);
         table1.setTableHeader(header);
         fr.setContentPane(SummaryPane);
+        fr.setExtendedState(JFrame.MAXIMIZED_BOTH);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setLocationRelativeTo(null);
         fr.setVisible(true);
@@ -50,7 +51,7 @@ public class Summary {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fr.setVisible(false);
-                PatientRegistration.main(null);
+                PatientRegistration.Main(null);
             }
         });
         dailySummaryButton.addActionListener(new ActionListener() {
@@ -103,8 +104,11 @@ public class Summary {
 
                      row = table.getSelectedRow();
                      String mrNum = (String) table.getValueAt(row, 1);
-
-                    new Consultation(fr, mrNum);
+                     String name = (String) table.getValueAt(row, 2);
+                    String age = (String) table.getValueAt(row, 4);
+                    String phone = (String) table.getValueAt(row, 6);
+                    String visit = (String) table.getValueAt(row, 8);
+                    new Consultation(fr, mrNum, name, age, phone, visit);
                 }
             }
         });

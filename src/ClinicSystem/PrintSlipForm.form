@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ClinicSystem.PrintSlipForm">
+  <grid id="27dc6" binding="panelToPrint" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="1053" height="562"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="42657" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="empty" title="" title-justification="2" title-position="3"/>
+        <children>
+          <component id="8b659" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="20" style="1"/>
+              <text value="Payment Receipt"/>
+            </properties>
+          </component>
+          <vspacer id="c01a9">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="211cc" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="2" vgap="2">
+        <margin top="0" left="18" bottom="0" right="0"/>
+        <constraints border-constraint="West"/>
+        <properties>
+          <foreground color="-14868446"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="98c30" binding="LogoPane" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="20" left="8" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <vspacer id="1a2cd">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="49d6d" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="f8521" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="78452" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="3" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font style="1"/>
+                          <text value="  Consultant Dr.Shazli Manzoor Pulmonologists"/>
+                          <verticalAlignment value="1"/>
+                          <verticalTextPosition value="1"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <component id="1b4d2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18" style="1"/>
+                  <icon value="ClinicSystem/Logo.png"/>
+                  <text value="Heart and Chest Clinic Islamabad"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <vspacer id="69b65">
+            <constraints>
+              <grid row="1" column="4" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <grid id="f49ed" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="8" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="163a4" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Medical Record No."/>
+                </properties>
+              </component>
+              <component id="23031" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Name: "/>
+                </properties>
+              </component>
+              <component id="3733f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Age:"/>
+                </properties>
+              </component>
+              <component id="6754a" class="javax.swing.JLabel" binding="nameHere">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="NameHere"/>
+                </properties>
+              </component>
+              <component id="9108e" class="javax.swing.JLabel" binding="ageHere">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="ageHere"/>
+                </properties>
+              </component>
+              <component id="11897" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Contact No."/>
+                </properties>
+              </component>
+              <component id="dcb6a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Visit Status: "/>
+                </properties>
+              </component>
+              <component id="77d3f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Panel: "/>
+                </properties>
+              </component>
+              <component id="a83ce" class="javax.swing.JLabel" binding="phNumHere">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="num"/>
+                </properties>
+              </component>
+              <component id="3ab5a" class="javax.swing.JLabel" binding="VisitStatus">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="status"/>
+                </properties>
+              </component>
+              <component id="b7880" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="55a1f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Receipt No."/>
+                </properties>
+              </component>
+              <component id="3d1c" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Receipt Date: "/>
+                </properties>
+              </component>
+              <component id="aeb72" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="12" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Narrow"/>
+                  <text value="Ref. Doctor: "/>
+                </properties>
+              </component>
+              <component id="bc960" class="javax.swing.JLabel" binding="mrHere">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="MrNumberHere"/>
+                </properties>
+              </component>
+              <component id="31519" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="DR.Shazli  Manzoor"/>
+                </properties>
+              </component>
+              <component id="859e2" class="javax.swing.JLabel" binding="date">
+                <constraints>
+                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="recDate"/>
+                </properties>
+              </component>
+              <component id="d3447" class="javax.swing.JLabel" binding="timeStempHere">
+                <constraints>
+                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <text value="recNum"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <scrollpane id="bcabe">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14868446"/>
+              <font size="14" style="1"/>
+              <foreground color="-16777216"/>
+            </properties>
+            <border type="empty">
+              <color color="-1"/>
+            </border>
+            <children>
+              <component id="60e7d" class="javax.swing.JTable" binding="table1" default-binding="true">
+                <constraints/>
+                <properties>
+                  <foreground color="-16777216"/>
+                  <gridColor color="-1"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <grid id="1846e" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="fcc4f" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints border-constraint="East"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <hspacer id="436b4">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="4cb39" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="3756" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="56975" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="LOGIN BY:    SHAFIQUE  AHMED "/>
+            </properties>
+          </component>
+          <component id="ec0ec" class="javax.swing.JLabel" binding="PRINTTIMELabel">
+            <constraints>
+              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="PRINT   TIME: "/>
+            </properties>
+          </component>
+          <component id="cf361" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="12" style="1"/>
+              <text value="For any Query Call: 03315378141, 03035505993"/>
+            </properties>
+          </component>
+          <component id="90e0b" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="62e54" layout-manager="BorderLayout" hgap="10" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="4aea5" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
